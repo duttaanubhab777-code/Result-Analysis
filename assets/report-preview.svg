@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 560" role="img" aria-labelledby="title desc">
+  <title id="title">Illustrative result report preview</title>
+  <desc id="desc">A sample report layout showing student information, overall percentage, total marks, a doughnut chart, subject progress bars and a marks table.</desc>
+  <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#eff6ff"/><stop offset="1" stop-color="#ecfdf5"/></linearGradient><linearGradient id="bar" x1="0" x2="1"><stop stop-color="#0f766e"/><stop offset="1" stop-color="#2563eb"/></linearGradient></defs>
+  <rect width="1000" height="560" rx="24" fill="url(#bg)"/>
+  <rect x="28" y="24" width="944" height="512" rx="18" fill="#fff" stroke="#dbeafe"/>
+  <text x="60" y="72" font-family="Arial" font-size="24" font-weight="700" fill="#0f172a">RESULT ANALYSIS</text>
+  <text x="60" y="102" font-family="Arial" font-size="13" fill="#64748b">Student performance report · Illustrative layout</text>
+  <rect x="60" y="126" width="880" height="64" rx="12" fill="#f8fafc"/>
+  <g font-family="Arial" fill="#334155" font-size="13"><text x="82" y="153">STUDENT</text><text x="82" y="174" font-weight="700">Student Name</text><text x="360" y="153">CLASS</text><text x="360" y="174" font-weight="700">Class XI / XII</text><text x="610" y="153">BOARD</text><text x="610" y="174" font-weight="700">Selected Board</text></g>
+  <g>
+    <rect x="60" y="210" width="260" height="110" rx="14" fill="#f0fdfa"/><rect x="340" y="210" width="260" height="110" rx="14" fill="#eff6ff"/><rect x="620" y="210" width="320" height="110" rx="14" fill="#f8fafc"/>
+    <g font-family="Arial"><text x="84" y="244" font-size="12" fill="#64748b">TOTAL MARKS</text><text x="84" y="286" font-size="30" font-weight="700" fill="#0f766e">— / 500</text><text x="364" y="244" font-size="12" fill="#64748b">OVERALL PERCENTAGE</text><text x="364" y="286" font-size="30" font-weight="700" fill="#1d4ed8">— %</text><text x="644" y="244" font-size="12" fill="#64748b">FINAL GRADE</text><text x="644" y="286" font-size="30" font-weight="700" fill="#0f172a">—</text></g>
+  </g>
+  <g font-family="Arial"><text x="70" y="365" font-size="14" font-weight="700" fill="#0f172a">Subject performance</text><text x="660" y="365" font-size="14" font-weight="700" fill="#0f172a">Best-of-Five breakdown</text></g>
+  <g transform="translate(175 445)"><circle r="62" fill="none" stroke="#e2e8f0" stroke-width="16"/><circle r="62" fill="none" stroke="url(#bar)" stroke-width="16" stroke-dasharray="250 390" stroke-linecap="round" transform="rotate(-90)"/><text text-anchor="middle" y="6" font-family="Arial" font-size="21" font-weight="700" fill="#0f172a">%</text></g>
+  <g font-family="Arial" font-size="12" fill="#475569"><text x="290" y="405">Bengali</text><text x="290" y="439">English</text><text x="290" y="473">Science subject</text><text x="290" y="507">Science subject</text></g>
+  <g fill="#e2e8f0"><rect x="385" y="394" width="190" height="10" rx="5"/><rect x="385" y="428" width="190" height="10" rx="5"/><rect x="385" y="462" width="190" height="10" rx="5"/><rect x="385" y="496" width="190" height="10" rx="5"/></g>
+  <g fill="url(#bar)"><rect x="385" y="394" width="150" height="10" rx="5"/><rect x="385" y="428" width="132" height="10" rx="5"/><rect x="385" y="462" width="166" height="10" rx="5"/><rect x="385" y="496" width="118" height="10" rx="5"/></g>
+  <rect x="650" y="385" width="270" height="128" rx="10" fill="#f8fafc" stroke="#e2e8f0"/>
+  <g font-family="Arial" font-size="12" fill="#475569"><text x="670" y="412">Language subjects</text><text x="900" y="412" text-anchor="end">2</text><text x="670" y="445">Top science subjects</text><text x="900" y="445" text-anchor="end">3</text><path d="M670 460H900" stroke="#cbd5e1"/><text x="670" y="487" font-weight="700" fill="#0f172a">Total counted subjects</text><text x="900" y="487" text-anchor="end" font-weight="700" fill="#0f172a">5</text></g>
+</svg>
