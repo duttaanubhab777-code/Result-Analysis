@@ -32,9 +32,9 @@ The application is built with **HTML, CSS, and vanilla JavaScript**. It does not
 | Best-of-Five | Includes Bengali, English, and the three highest-ranked science subjects. |
 | Optional preference | Uses the selected optional subject as a tie-break preference when science subjects have equal marks. |
 | Grade and remarks | Displays application-defined grades and performance remarks. |
-| Visual analytics | Shows an overall doughnut chart and subject-wise progress bars. |
-| Printable report | Opens the browser print dialog to print or save the report as PDF. |
-| Mobile-friendly table | Keeps the result table horizontally scrollable on narrow screens. |
+| Visual analytics | Animated score ring, grade-scale ladder, Best-5 bars, six-subject column chart, strength radar, share-of-total donut and quick insights. |
+| Printable report | Opens the browser print dialog; a dedicated A4 print layout keeps every card and chart uncut in the saved PDF. |
+| Responsive design | Dark, animated UI with SVG icons; the result table turns into compact cards on phones. |
 
 ## How it works
 
@@ -94,7 +94,7 @@ The following SVG is an illustrative report layout for documentation; it is not 
 <img src="https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white" alt="HTML5" />
 <img src="https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white" alt="CSS3" />
 <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=222" alt="JavaScript" />
-<img src="https://img.shields.io/badge/Chart.js-FF6384?style=flat-square&logo=chartdotjs&logoColor=white" alt="Chart.js" />
+<img src="https://img.shields.io/badge/SVG-FFB13B?style=flat-square&logo=svg&logoColor=white" alt="SVG" />
 </p>
 
 | Technology | Purpose |
@@ -103,7 +103,7 @@ The following SVG is an illustrative report layout for documentation; it is not 
 | CSS3 | Styling, responsive table, and print styles |
 | Vanilla JavaScript | Input handling, calculations, and DOM updates |
 | Browser localStorage | Temporary data transfer between pages |
-| Chart.js | Doughnut chart on the result page |
+| Inline SVG | Lightweight charts and icons (no chart library, works offline) |
 
 ## Run locally
 
@@ -132,9 +132,13 @@ You can also use a code editor's static live-preview or local-server feature.
 Result-Analysis/
 ├── index.html          # Student details and marks form
 ├── script.js           # Form handling and localStorage hand-off
+├── form-ui.js          # Form completion progress (UI only)
 ├── result.html         # Result report structure
-├── result.js           # Best-of-Five logic and chart rendering
-├── resultstyle.css     # Report and print styles
+├── result.js           # Best-of-Five logic and grade calculation
+├── analytics.js        # SVG charts, table polish, print preparation (UI only)
+├── theme.css           # Shared design tokens and base styles
+├── style.css           # Form page styles
+├── resultstyle.css     # Report, responsive and A4 print styles
 ├── assets/
 │   ├── workflow.svg    # Workflow diagram
 │   └── report-preview.svg

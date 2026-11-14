@@ -2,181 +2,224 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel ="stylesheet" href="resultstyle.css">
-    <style>
-    /* যখন পেজটা প্রিন্ট বা পিডিএফ হবে, তখন এই বাটনটা লুকিয়ে যাবে */
-    @media print {
-        #downloadBtn {
-            display: none !important;
-        }
-    }
-</style>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#0d121a">
+    <title>Result Analysis</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Sora:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="theme.css">
+    <link rel="stylesheet" href="resultstyle.css">
 </head>
-<!-- পেজের উপরের অংশ: স্টুডেন্টের বেসিক ইনফরমেশন -->
-<div style="text-align: center; margin-top: 20px; margin-bottom: 20px;">
-    <button id="downloadBtn" style="padding: 10px 20px; font-size: 16px; background-color: #ff9800; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;">
-        Download Result
-    </button>
-</div>
+<body>
 
-<div style="text-align: center; margin-bottom: 30px;">
-    <h1 style="color: #333;">RESULT ANALYSIS</h1>
-    <h3>Name: <span id="resName">Anubhab Dutta</span></h3>
-    <p><b>Class:</b> <span id="resClass">ClassXII</span> &nbsp;|&nbsp; <b>Board:</b> <span id="resBoard">WBCHSE</span></p>
-</div>
+<!-- SVG icon sprite -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <linearGradient id="gRing" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4cc9f0"/><stop offset="1" stop-color="#8b8cf8"/></linearGradient>
+    <symbol id="i-back" viewBox="0 0 24 24"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></symbol>
+    <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></symbol>
+    <symbol id="i-layers" viewBox="0 0 24 24"><path d="m12 2 10 5-10 5L2 7z"/><path d="m2 12 10 5 10-5"/><path d="m2 17 10 5 10-5"/></symbol>
+    <symbol id="i-board" viewBox="0 0 24 24"><path d="M3 21h18"/><path d="M5 21V10"/><path d="M9 21V10"/><path d="M15 21V10"/><path d="M19 21V10"/><path d="M2 10 12 4l10 6z"/></symbol>
+    <symbol id="i-cal" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4"/><path d="M8 3v4"/><path d="M3 10h18"/></symbol>
+    <symbol id="i-book" viewBox="0 0 24 24"><path d="M2 4h6a4 4 0 0 1 4 4v12a3 3 0 0 0-3-3H2z"/><path d="M22 4h-6a4 4 0 0 0-4 4v12a3 3 0 0 1 3-3h7z"/></symbol>
+    <symbol id="i-lang" viewBox="0 0 24 24"><path d="m5 8 6 6"/><path d="m4 14 6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="m22 22-5-10-5 10"/><path d="M14 18h6"/></symbol>
+    <symbol id="i-atom" viewBox="0 0 24 24"><circle cx="12" cy="12" r="1.5"/><ellipse cx="12" cy="12" rx="10" ry="4"/><ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(60 12 12)"/><ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(120 12 12)"/></symbol>
+    <symbol id="i-sigma" viewBox="0 0 24 24"><path d="M18 7V5a1 1 0 0 0-1-1H6.5a.5.5 0 0 0-.4.8l4.5 6a2 2 0 0 1 0 2.4l-4.5 6a.5.5 0 0 0 .4.8H17a1 1 0 0 0 1-1v-2"/></symbol>
+    <symbol id="i-flask" viewBox="0 0 24 24"><path d="M10 2v7.5a2 2 0 0 1-.2.9L4.7 20.5a1 1 0 0 0 .9 1.5h12.8a1 1 0 0 0 .9-1.5l-5.1-10.1a2 2 0 0 1-.2-.9V2"/><path d="M8.5 2h7"/><path d="M7 16h10"/></symbol>
+    <symbol id="i-leaf" viewBox="0 0 24 24"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.5 19 2c1 2 2 4.2 2 8 0 5.5-4.8 10-10 10z"/><path d="M2 21c0-3 1.9-5.4 5.1-6C9.5 14.5 12 13 13 12"/></symbol>
+    <symbol id="i-sum" viewBox="0 0 24 24"><path d="M4 7h16"/><path d="M4 12h16"/><path d="M4 17h10"/></symbol>
+    <symbol id="i-percent" viewBox="0 0 24 24"><path d="M19 5 5 19"/><circle cx="7" cy="7" r="2.5"/><circle cx="17" cy="17" r="2.5"/></symbol>
+    <symbol id="i-award" viewBox="0 0 24 24"><circle cx="12" cy="9" r="6"/><path d="m8.5 14.5-1.5 7 5-3 5 3-1.5-7"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m8 12.5 3 3 5-6"/></symbol>
+    <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></symbol>
+    <symbol id="i-trophy" viewBox="0 0 24 24"><path d="M8 21h8"/><path d="M12 17v4"/><path d="M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M17 5h3v2a3 3 0 0 1-3 3"/><path d="M7 5H4v2a3 3 0 0 0 3 3"/></symbol>
+    <symbol id="i-down" viewBox="0 0 24 24"><path d="m3 7 6 6 4-4 8 8"/><path d="M15 17h6v-6"/></symbol>
+    <symbol id="i-up" viewBox="0 0 24 24"><path d="m3 17 6-6 4 4 8-8"/><path d="M15 7h6v6"/></symbol>
+    <symbol id="i-activity" viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></symbol>
+    <symbol id="i-chart" viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M8 17v-5"/><path d="M13 17V8"/><path d="M18 17v-9"/></symbol>
+    <symbol id="i-radar" viewBox="0 0 24 24"><path d="M12 2 21 7v10l-9 5-9-5V7z"/><path d="m12 7 4.5 2.5v5L12 17l-4.5-2.5v-5z"/></symbol>
+    <symbol id="i-pie" viewBox="0 0 24 24"><path d="M21 12A9 9 0 1 1 12 3v9z"/><path d="M15.5 3.6A9 9 0 0 1 20.4 8.5H15.5z"/></symbol>
+    <symbol id="i-ladder" viewBox="0 0 24 24"><path d="M3 20h4v-4h4v-4h4V8h6"/></symbol>
+    <symbol id="i-bulb" viewBox="0 0 24 24"><path d="M9 18h6"/><path d="M10 21h4"/><path d="M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0 0 12 3z"/></symbol>
+    <symbol id="i-table" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18"/><path d="M9 10v10"/></symbol>
+  </defs>
+</svg>
 
-<!-- ******************************************************* -->
-<!-- এখানে আপনার সেই 6-কলামের মেইন সাবজেক্টের টেবিলটা থাকবে -->
-<!-- ******************************************************* -->
+<div class="wrap" id="report">
 
+    <!-- Top bar (hidden in PDF/print) -->
+    <header class="bar no-print">
+        <a class="btn ghost" href="index.html"><svg class="ico"><use href="#i-back"/></svg><span>New entry</span></a>
+        <button id="downloadBtn" class="btn primary" type="button"><svg class="ico"><use href="#i-download"/></svg><span>Download Result</span></button>
+    </header>
 
-<div class="table-container">
-    
- <table class="result-table">
-        
-        <!-- টেবিলের হেডিং (৬টি কলাম) -->
-        <thead>
-            <tr>
-                <th></th>
-                <th>Subject Name</th>
-                <th>Marks</th>
-                <th>Percentage</th>
-                <th>Grade</th>
-                <th>Remarks</th>
-            </tr>
-        </thead>
-        
-        <!-- টেবিলের ডেটা -->
-        <tbody>
-            <!-- প্রথম Row -->
-            <tr>
-                <td>First Language</td>
-                <td>Bengali</td>
-                <td id="res-ben-marks">90</td>
-                <td id="res-ben-percent">90%</td>
-                <td id="res-ben-grade">AA</td>
-                <td id="res-ben-remarks">Pass</td>
-            </tr>
-            
-            <!-- দ্বিতীয় Row -->
-            <tr>
-                <td >Second Language</td>
-                <td>English</td>
-                <td id="res-eng-marks">76</td>
-                <td id="res-eng-percent">76%</td>
-                <td id="res-eng-grade">BB</td>
-                <td id="res-eng-remarks">Pass</td>
-            </tr>
+    <!-- Hero -->
+    <section class="card hero anim" id="hero">
+        <div class="who">
+            <div class="avatar" id="avatar" aria-hidden="true">AD</div>
+            <div class="who-t">
+                <p class="doc-title">Result Analysis</p>
+                <h1 class="name"><span id="resName">Anubhab Dutta</span></h1>
+                <div class="chips">
+                    <span class="chip"><svg class="ico"><use href="#i-layers"/></svg><span id="resClass">ClassXII</span></span>
+                    <span class="chip"><svg class="ico"><use href="#i-board"/></svg><span id="resBoard">WBCHSE</span></span>
+                    <span class="chip"><svg class="ico"><use href="#i-cal"/></svg><span id="resDate"></span></span>
+                </div>
+            </div>
+        </div>
 
-            <!-- তৃতীয় Row -->
-            <!-- Subject 1 এর Row -->
-<tr>
-    <td>Subject 1</td>
-    <td id="res-sub1-name"></td> <!-- নামটা জাভাস্ক্রিপ্ট বসাবে -->
-    <td id="res-sub1-marks"></td>
-    <td id="res-sub1-percent"></td>
-    <td id="res-sub1-grade"></td>
-    <td id="res-sub1-remarks"></td>
-</tr>
+        <div class="ring" id="ringBox" style="--v:0">
+            <svg viewBox="0 0 100 100" aria-hidden="true">
+                <circle class="ring-track" cx="50" cy="50" r="44" pathLength="100"/>
+                <circle class="ring-arc" cx="50" cy="50" r="44" pathLength="100" transform="rotate(-90 50 50)"/>
+            </svg>
+            <div class="ring-c"><b id="ringPct">0.0%</b><span>Best of 5</span></div>
+        </div>
+    </section>
 
-<!-- Subject 2 এর Row -->
-<tr>
-    <td>Subject 2</td>
-    <td id="res-sub2-name"></td>
-    <td id="res-sub2-marks"></td>
-    <td id="res-sub2-percent"></td>
-    <td id="res-sub2-grade"></td>
-    <td id="res-sub2-remarks"></td>
-</tr>
+    <!-- Summary tiles -->
+    <section class="tiles" aria-label="Summary">
+        <div class="tile" style="--c:var(--c1)">
+            <span class="ti"><svg class="ico"><use href="#i-sum"/></svg></span>
+            <span class="tl">Total Marks</span>
+            <b class="tv"><span id="resTotalMarks">000</span></b>
+        </div>
+        <div class="tile" style="--c:var(--c2)">
+            <span class="ti"><svg class="ico"><use href="#i-percent"/></svg></span>
+            <span class="tl">Overall Percentage</span>
+            <b class="tv"><span id="resPercentage">00.0</span></b>
+        </div>
+        <div class="tile" id="tileGrade" style="--c:var(--c5)">
+            <span class="ti"><svg class="ico"><use href="#i-award"/></svg></span>
+            <span class="tl">Final Grade</span>
+            <b class="tv"><span id="resFinalGrade">AA</span></b>
+        </div>
+        <div class="tile" style="--c:var(--c3)">
+            <span class="ti"><svg class="ico"><use href="#i-check"/></svg></span>
+            <span class="tl">Final Remarks</span>
+            <b class="tv"><span id="resFinalRemarks">Pass</span></b>
+        </div>
+        <div class="tile" style="--c:var(--c4)">
+            <span class="ti"><svg class="ico"><use href="#i-target"/></svg></span>
+            <span class="tl">Final Optional Subject</span>
+            <b class="tv"><span id="resOptionalSub">Biology</span></b>
+        </div>
+    </section>
 
-<!-- Subject 3 এর Row -->
-<tr>
-    <td>Subject 3</td>
-    <td id="res-sub3-name"></td>
-    <td id="res-sub3-marks"></td>
-    <td id="res-sub3-percent"></td>
-    <td id="res-sub3-grade"></td>
-    <td id="res-sub3-remarks"></td>
-</tr>
+    <!-- Result table -->
+    <section class="card table-card anim" id="tableCard">
+        <h2 class="ct"><span class="ci"><svg class="ico"><use href="#i-table"/></svg></span>Subject-wise result</h2>
+        <div class="table-container">
+            <table class="result-table">
+                <thead>
+                    <tr>
+                        <th>Category</th>
+                        <th>Subject Name</th>
+                        <th>Marks</th>
+                        <th>Percentage</th>
+                        <th>Grade</th>
+                        <th>Remarks</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr id="row-ben">
+                        <td data-label="Category">First Language</td>
+                        <td data-label="Subject" id="res-ben-name">Bengali</td>
+                        <td data-label="Marks" id="res-ben-marks">90</td>
+                        <td data-label="Percentage" class="pc" id="res-ben-percent">90%</td>
+                        <td data-label="Grade" id="res-ben-grade">AA</td>
+                        <td data-label="Remarks" id="res-ben-remarks">Pass</td>
+                    </tr>
+                    <tr id="row-eng">
+                        <td data-label="Category">Second Language</td>
+                        <td data-label="Subject" id="res-eng-name">English</td>
+                        <td data-label="Marks" id="res-eng-marks">76</td>
+                        <td data-label="Percentage" class="pc" id="res-eng-percent">76%</td>
+                        <td data-label="Grade" id="res-eng-grade">BB</td>
+                        <td data-label="Remarks" id="res-eng-remarks">Pass</td>
+                    </tr>
+                    <tr id="row-sub1">
+                        <td data-label="Category">Subject 1</td>
+                        <td data-label="Subject" id="res-sub1-name"></td>
+                        <td data-label="Marks" id="res-sub1-marks"></td>
+                        <td data-label="Percentage" class="pc" id="res-sub1-percent"></td>
+                        <td data-label="Grade" id="res-sub1-grade"></td>
+                        <td data-label="Remarks" id="res-sub1-remarks"></td>
+                    </tr>
+                    <tr id="row-sub2">
+                        <td data-label="Category">Subject 2</td>
+                        <td data-label="Subject" id="res-sub2-name"></td>
+                        <td data-label="Marks" id="res-sub2-marks"></td>
+                        <td data-label="Percentage" class="pc" id="res-sub2-percent"></td>
+                        <td data-label="Grade" id="res-sub2-grade"></td>
+                        <td data-label="Remarks" id="res-sub2-remarks"></td>
+                    </tr>
+                    <tr id="row-sub3">
+                        <td data-label="Category">Subject 3</td>
+                        <td data-label="Subject" id="res-sub3-name"></td>
+                        <td data-label="Marks" id="res-sub3-marks"></td>
+                        <td data-label="Percentage" class="pc" id="res-sub3-percent"></td>
+                        <td data-label="Grade" id="res-sub3-grade"></td>
+                        <td data-label="Remarks" id="res-sub3-remarks"></td>
+                    </tr>
+                    <tr id="row-opt">
+                        <td data-label="Category">Subject 4</td>
+                        <td data-label="Subject" id="res-opt-name"></td>
+                        <td data-label="Marks" id="res-opt-marks"></td>
+                        <td data-label="Percentage" class="pc" id="res-opt-percent"></td>
+                        <td data-label="Grade" id="res-opt-grade"></td>
+                        <td data-label="Remarks" id="res-opt-remarks"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
 
-<!-- Optional Subject এর Row -->
-<tr>
-    <td>Subject 4</td>
-    <td id="res-opt-name"></td>
-    <td id="res-opt-marks"></td>
-    <td id="res-opt-percent"></td>
-    <td id="res-opt-grade"></td>
-    <td id="res-opt-remarks"></td>
-</tr>
-                        
-          
+    <!-- Analytics -->
+    <h2 class="sec-title"><svg class="ico"><use href="#i-chart"/></svg>Analytics</h2>
 
-        </tbody>
-    </table>
+    <div class="grid">
+        <section class="card anim span2">
+            <h3 class="ct"><span class="ci"><svg class="ico"><use href="#i-ladder"/></svg></span>Where you stand on the grade scale</h3>
+            <div id="ladder"></div>
+        </section>
+
+        <section class="card anim">
+            <h3 class="ct"><span class="ci"><svg class="ico"><use href="#i-chart"/></svg></span>Best-5 subject marks</h3>
+            <div id="subjectBars"></div>
+        </section>
+
+        <section class="card anim">
+            <h3 class="ct"><span class="ci"><svg class="ico"><use href="#i-chart"/></svg></span>All six subjects</h3>
+            <div id="colChart"></div>
+        </section>
+
+        <section class="card anim">
+            <h3 class="ct"><span class="ci"><svg class="ico"><use href="#i-radar"/></svg></span>Strength radar</h3>
+            <div id="radarChart"></div>
+        </section>
+
+        <section class="card anim">
+            <h3 class="ct"><span class="ci"><svg class="ico"><use href="#i-pie"/></svg></span>Share of total marks</h3>
+            <div id="shareChart"></div>
+        </section>
+
+        <section class="card anim span2">
+            <h3 class="ct"><span class="ci"><svg class="ico"><use href="#i-bulb"/></svg></span>Quick insights</h3>
+            <div id="insights"></div>
+        </section>
     </div>
-    
-    
-    <!-- পেজের নিচের অংশ: টোটাল মার্কস এবং পার্সেন্টেজের সামারি টেবিল -->
-<div class="table-container" style="margin-top: 30px; margin-bottom: 50px;">
-    <table class="summary-table">
-        <tbody>
-            <tr>
-                <th>Total Marks</th>
-                <td><span id="resTotalMarks">000</span> </td> 
-            </tr>
-            <tr>
-                <th>Overall Percentage</th>
-                <td><span id="resPercentage">00.0</span></td>
-            </tr>
-            <tr>
-                <th>Final Grade</th>
-                <td><span id="resFinalGrade">AA</span></td>
-            </tr>
-            <tr>
-                <th>Final Remarks</th>
-                <td><span id="resFinalRemarks">Pass</span></td>
-            </tr>
-            <tr>
-                <th>Final Optional Subject</th>
-                <!-- ফর্মে যেটা সিলেক্ট করেছিল, সেটা এখানে দেখাবে -->
-                <td><span id="resOptionalSub">Biology</span></td>
-            </tr>
-        </tbody>
-    </table>
 
-
-<p style="text-align: center; font-size: 13px; color:#ed1a1a; font-weight: bold;">Created by Anubhab Dutta.</p></div>
-
-<div style="width: 300px; height: 300px; margin: 30px auto;">
-    <canvas id="myPieChart"></canvas>
+    <!-- Footer -->
+    <footer class="cheer card">
+        <p>If your result is not good, don't worry.</p>
+        <p><b>It is never about the end result. It's always about the journey.</b></p>
+        <p class="credit">Created by Anubhab Dutta.</p>
+    </footer>
 </div>
 
-<!-- সাবজেক্টের লম্বা প্রগ্রেস বার দেখানোর জায়গা -->
-<div id="subjectBars" style="width: 90%; max-width: 400px; margin: 30px auto; font-family: sans-serif;"></div>
-
-
- <div style="text-align: center;">
-                <p style="color: #ff0a00;"><b>If your result is not good !</b></p>
-                <p style="color: #ed671a;"> <b>Don't worry</b></p>
-                <p style="color: #c61aed;"><b>Because</b></p>
-                <label><b><i style="color: #0000b3;">It is never about End Result</i></b></label>
-                <br>
-                <label><b><i style="color: #b300a2;">It's always about journey</i></b></label>
-                
-            
-            
-
-
-<p style="text-align: center; font-size: 13px; color:#1a1aed; font-weight: bold;">Created by Anubhab Dutta.</p></div>
-     
-     
-     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-     
-    <script src="result.js"></script> 
-    
-  
+<script src="analytics.js"></script>
+<script src="result.js"></script>
 </body>
 </html>

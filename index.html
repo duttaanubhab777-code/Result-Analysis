@@ -2,202 +2,194 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Result Analysis Form</title>
-
-    <style>
-        /* ১. বডির ব্যাকগ্রাউন্ড এবং অ্যানিমেশন সেটআপ */
-        body {
-            margin: 0;
-            padding: 0;
-            min-height: 100vh;
-            font-family: Arial, sans-serif;
-            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-            background-size: 400% 400%;
-            animation: gradientAnimation 15s ease infinite;
-        }
-
-        /* ২. অ্যানিমেশনের নিয়ম (Keyframes) */
-        @keyframes gradientAnimation {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        /* ৩. গ্লাস ইফেক্ট (Glassmorphism) এবং 3D সেটআপ */
-        .glass-box {
-            max-width: 500px;
-            margin: 40px auto;
-            padding: 30px;
-            border-radius: 15px;
-            
-            /* কাঁচের মতো স্বচ্ছ করার কোড */
-            background: rgba(255, 255, 255, 0.25);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
-            
-            /* 3D এর জন্য নতুন কোড */
-            transform: perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0);
-            transition: transform 0.5s ease, box-shadow 0.5s ease;
-            transform-style: preserve-3d;
-        }
-
-        /* মাউস হোভার (Hover) করলে 3D তে ভাসবে */
-        .glass-box:hover {
-            transform: perspective(1000px) rotateX(4deg) rotateY(-4deg) translateY(-10px); 
-            box-shadow: -15px 25px 45px rgba(0, 0, 0, 0.4); 
-        }
-
-        /* ৪. ইনপুট বক্সগুলো যাতে কাঁচের সাথে মানানসই হয় */
-        input[type="text"], input[type="number"], select, textarea {
-            background: rgba(255, 255, 255, 0.6);
-            border: 1px solid rgba(255, 255, 255, 0.8);
-            border-radius: 5px;
-            padding: 8px;
-            outline: none;
-            transition: 0.3s ease;
-        }
-
-        /* ইনপুটে ক্লিক করলে বর্ডার কালার চেঞ্জ হবে */
-        input:focus, select:focus, textarea:focus {
-            background: rgba(255, 255, 255, 0.9);
-            border: 1px solid #ff8800;
-        }
-
-        /* ৫. সাবমিট বাটনের হোভার ইফেক্ট */
-        button[type="submit"] {
-            transition: 0.3s ease;
-            cursor: pointer;
-        }
-        button[type="submit"]:hover {
-            background-color: #cc6d00 !important;
-            transform: translateY(-2px);
-            box-shadow: 0px 5px 15px rgba(0,0,0,0.3);
-        }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#0d121a">
+    <title>Result Analysis</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Sora:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="theme.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
-    <!-- গ্লাস বক্স এখান থেকে শুরু -->
-    <div class="glass-box">
-        
-        <div style="text-align: center;">
-            <h2 style="color: green;"><i>RESULT ANALYSIS</i></h2>
-            <h6 style="color: red;"><i>{for Science stream students only!!}</i></h6>
+
+<!-- SVG icon sprite -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <linearGradient id="gArt" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4cc9f0"/><stop offset="1" stop-color="#8b8cf8"/></linearGradient>
+    <symbol id="i-cap" viewBox="0 0 24 24"><path d="M22 10 12 5 2 10l10 5z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/><path d="M22 10v6"/></symbol>
+    <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a6 6 0 0 1 6-6h4a6 6 0 0 1 6 6v1"/></symbol>
+    <symbol id="i-layers" viewBox="0 0 24 24"><path d="m12 2 10 5-10 5L2 7z"/><path d="m2 12 10 5 10-5"/><path d="m2 17 10 5 10-5"/></symbol>
+    <symbol id="i-board" viewBox="0 0 24 24"><path d="M3 21h18"/><path d="M5 21V10"/><path d="M9 21V10"/><path d="M15 21V10"/><path d="M19 21V10"/><path d="M2 10 12 4l10 6z"/></symbol>
+    <symbol id="i-book" viewBox="0 0 24 24"><path d="M2 4h6a4 4 0 0 1 4 4v12a3 3 0 0 0-3-3H2z"/><path d="M22 4h-6a4 4 0 0 0-4 4v12a3 3 0 0 1 3-3h7z"/></symbol>
+    <symbol id="i-lang" viewBox="0 0 24 24"><path d="m5 8 6 6"/><path d="m4 14 6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="m22 22-5-10-5 10"/><path d="M14 18h6"/></symbol>
+    <symbol id="i-atom" viewBox="0 0 24 24"><circle cx="12" cy="12" r="1.5"/><ellipse cx="12" cy="12" rx="10" ry="4"/><ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(60 12 12)"/><ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(120 12 12)"/></symbol>
+    <symbol id="i-sigma" viewBox="0 0 24 24"><path d="M18 7V5a1 1 0 0 0-1-1H6.5a.5.5 0 0 0-.4.8l4.5 6a2 2 0 0 1 0 2.4l-4.5 6a.5.5 0 0 0 .4.8H17a1 1 0 0 0 1-1v-2"/></symbol>
+    <symbol id="i-flask" viewBox="0 0 24 24"><path d="M10 2v7.5a2 2 0 0 1-.2.9L4.7 20.5a1 1 0 0 0 .9 1.5h12.8a1 1 0 0 0 .9-1.5l-5.1-10.1a2 2 0 0 1-.2-.9V2"/><path d="M8.5 2h7"/><path d="M7 16h10"/></symbol>
+    <symbol id="i-leaf" viewBox="0 0 24 24"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.5 19 2c1 2 2 4.2 2 8 0 5.5-4.8 10-10 10z"/><path d="M2 21c0-3 1.9-5.4 5.1-6C9.5 14.5 12 13 13 12"/></symbol>
+    <symbol id="i-msg" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H8l-5 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></symbol>
+    <symbol id="i-send" viewBox="0 0 24 24"><path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4z"/></symbol>
+    <symbol id="i-chart" viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M8 17v-5"/><path d="M13 17V8"/><path d="M18 17v-9"/></symbol>
+    <symbol id="i-pdf" viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M9 14h6"/><path d="M9 17h4"/></symbol>
+    <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></symbol>
+    <symbol id="i-chev" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
+  </defs>
+</svg>
+
+<main class="shell">
+
+    <!-- Left: intro -->
+    <aside class="intro">
+        <div class="brand">
+            <span class="logo"><svg class="ico"><use href="#i-cap"/></svg></span>
+            <span>Result Analysis</span>
         </div>
 
-        <form id="marksForm" onsubmit="sendData(event)">
-            
-            <div style="text-align: center;">
-                <label for="fullname">Your Name :-</label>
-                <input type="text" id="fullname" placeholder="Enter Your full Name" style="width: 80%;" required>
-                
-                <br><br>
-                <label>Your Class:-</label>
-                <label for="11">
-                    <input type="radio" value="ClassXI" name="Class" id="11" required>ClassXI
-                </label>
-                <label for="12">
-                    <input type="radio" value="ClassXII" name="Class" id="12">ClassXII
-                </label>
-                
-                <br><br>
-                <label>Select Your Board:-</label>
-                <select name="Boards" id="Boards" required>
-                    <option value="" disabled selected>-- Select Board --</option>
-                    <option value="WBCHSE">WBCHSE</option>
-                    <option value="ICSE">ICSE</option>
-                    <option value="CBSE">CBSE</option>
-                    <option value="Other State Board">Other State Board</option>
-                </select>
-                
-                <br><br>
-                <label><b style="color:#65ff00;">Marks:-</b></label>
-                <br><br>
-                
-                <label>Bengali:-</label>
-                <label for="Ben">
-                    <input type="number" id="Ben" placeholder="Marks obtained" required min="0" max="100" style="width: 180px; padding: 5px;" oninput="if(this.value > 100 || this.value < 0) { alert('Invalid! Please enter marks between 0 and 100.'); this.value = ''; }">
-                </label>
-                <br><br>
-                
-                <label>English:-</label>
-                <label for="Eng" id="">
-                    <input type="number" id="Eng" required placeholder="Marks obtained" min="0" max="100" style="width: 180px; padding: 5px;" oninput="if(this.value > 100 || this.value < 0) { alert('Invalid! Please enter marks between 0 and 100.'); this.value = ''; }">
-                </label>
-                <br><br>
-                
-                <label>Physics:-</label>
-                <label for="Phy">
-                    <input type="number" id="Phy" required placeholder="Marks obtained" min="0" max="100" style="width: 180px; padding: 5px;" oninput="if(this.value > 100 || this.value < 0) { alert('Invalid! Please enter marks between 0 and 100.'); this.value = ''; }">
-                </label>
-                <br><br>
-                
-                <label>Mathematics:-</label>
-                <label for="Math">
-                    <input type="number" id="Math" required placeholder="Marks obtained" min="0" max="100" style="width: 180px; padding: 5px;" oninput="if(this.value > 100 || this.value < 0) { alert('Invalid! Please enter marks between 0 and 100.'); this.value = ''; }">
-                </label>
-                <br><br>
-                
-                <label>Chemistry:-</label>
-                <label for="Chem">
-                    <input type="number" id="Chem" required placeholder="Marks obtained" min="0" max="100" style="width: 180px; padding: 5px;" oninput="if(this.value > 100 || this.value < 0) { alert('Invalid! Please enter marks between 0 and 100.'); this.value = ''; }">
-                </label>
-                <br><br>
-                
-                <label>Biology:-</label>
-                <label for="Bio">
-                    <input type="number" id="Bio" required placeholder="Marks obtained" min="0" max="100" style="width: 180px; padding: 5px;" oninput="if(this.value > 100 || this.value < 0) { alert('Invalid! Please enter marks between 0 and 100.'); this.value = ''; }">
-                </label>
-  <br>
-  <br>       
-  <div id="optionalSelect" style ="text-align: center">     
-                <label style="color:#fff100;">If you got the same marks in all subjects, which optional subject would you choose?</label>
-                <br><br>
-   <label for="p">
-                    <input type="radio" value="Physics" name="ops" id="p" required >Physics </label>
-                    <br><br>
-   <label for="c">
-                    <input type="radio" value="Chemistry" name="ops" id="c">Chemistry</label> 
-                    <br><br>
-   <label for="m">
-                    <input type="radio" value="Mathematics" name="ops" id="m">Mathematics </label>
-                    <br><br>
-   <label for="b">
-                    <input type="radio" value="Biology" name="ops" id="b">Biology </label>
-                    </div>       
-                <br><br>
-                
-                <label for="suggestion"><b>Suggestion Box:-</b></label><br>
-                <textarea id="suggestion" placeholder="Write your suggestions here..." rows="6" style="width: 90%; padding: 10px; border-radius: 10px; box-sizing: border-box;"></textarea>
-            </div>
-            
-            <br><br>
-            <div style="text-align: center;">
-                <button type="submit" style="background-color: #ff8800; color: white; padding: 10px 20px; border: none; border-radius: 5px;">Submit</button>
-            </div>
-            
-            <br><br>
-            <div style="text-align: center;">
-                <h4 style="color: #ff0a00;">If your result is not good !</h4>
-                <h3 style="color: #00ffc0;">Don't worry</h3>
-                <h4 style="color: #65ff00;">Because</h4>
-                <label><b><i style="color: #0000b3;">It is never about End Result</i></b></label>
-                <br>
-                <label><b><i style="color: #b300a2;">It's always about journey</i></b></label>
-                <br><br>
-            </div>
-            
-            <p style="text-align: center; font-size: 13px; color: #f8ff00; font-weight: bold;">Created by Anubhab Dutta.</p>
-        </form>
-    </div>
-    <!-- গ্লাস বক্স এখানেই শেষ -->
-<script src="script.js"></script>
-    </body>
-</html>
+        <h1>See how your best five subjects add up</h1>
+        <p class="lead">Enter your marks once. Get grades, charts and a PDF-ready report for Class XI and XII.</p>
 
+        <ul class="points">
+            <li style="--c:var(--c1)"><span class="pi"><svg class="ico"><use href="#i-target"/></svg></span><div><b>Best-of-Five scoring</b><span class="t">Bengali, English and your top three science subjects.</span></div></li>
+            <li style="--c:var(--c2)"><span class="pi"><svg class="ico"><use href="#i-chart"/></svg></span><div><b>Subject-wise analytics</b><span class="t">Radar, column and share charts for every subject.</span></div></li>
+            <li style="--c:var(--c5)"><span class="pi"><svg class="ico"><use href="#i-pdf"/></svg></span><div><b>Clean PDF report</b><span class="t">Print or save the full report on A4 without cut-offs.</span></div></li>
+        </ul>
+
+        <svg class="art" viewBox="0 0 360 150" role="img" aria-label="Preview of a result ring and subject bars">
+            <circle cx="70" cy="75" r="52" fill="none" stroke="#25324a" stroke-width="12"/>
+            <circle class="art-ring" cx="70" cy="75" r="52" fill="none" stroke="url(#gArt)" stroke-width="12" stroke-linecap="round" pathLength="100" transform="rotate(-90 70 75)"/>
+            <g class="art-bars">
+                <rect x="150" y="26" width="200" height="10" rx="5" fill="#25324a"/><rect class="b" style="--i:0;--w:.92" x="150" y="26" width="200" height="10" rx="5" fill="#34d399"/>
+                <rect x="150" y="50" width="200" height="10" rx="5" fill="#25324a"/><rect class="b" style="--i:1;--w:.78" x="150" y="50" width="200" height="10" rx="5" fill="#4cc9f0"/>
+                <rect x="150" y="74" width="200" height="10" rx="5" fill="#25324a"/><rect class="b" style="--i:2;--w:.86" x="150" y="74" width="200" height="10" rx="5" fill="#8b8cf8"/>
+                <rect x="150" y="98" width="200" height="10" rx="5" fill="#25324a"/><rect class="b" style="--i:3;--w:.64" x="150" y="98" width="200" height="10" rx="5" fill="#f7b955"/>
+                <rect x="150" y="122" width="200" height="10" rx="5" fill="#25324a"/><rect class="b" style="--i:4;--w:.72" x="150" y="122" width="200" height="10" rx="5" fill="#f472b6"/>
+            </g>
+        </svg>
+    </aside>
+
+    <!-- Right: form -->
+    <section class="panel">
+        <form id="marksForm" onsubmit="sendData(event)">
+
+            <header class="panel-head">
+                <div>
+                    <h2>Enter your marks</h2>
+                    <p class="sub">For Science stream students only.</p>
+                </div>
+                <div class="prog" aria-live="polite">
+                    <span id="progText">0 of 10 completed</span>
+                    <div class="prog-bar"><i id="progFill"></i></div>
+                </div>
+            </header>
+
+            <!-- Student details -->
+            <div class="group">
+                <h3 class="gt"><span class="gi"><svg class="ico"><use href="#i-user"/></svg></span>Student details</h3>
+
+                <label class="field" for="fullname">
+                    <span class="lab">Full name</span>
+                    <input type="text" id="fullname" placeholder="Enter your full name" autocomplete="name" required>
+                </label>
+
+                <div class="field">
+                    <span class="lab">Class</span>
+                    <div class="seg" role="radiogroup" aria-label="Class">
+                        <label for="11" class="seg-opt">
+                            <input type="radio" value="ClassXI" name="Class" id="11" required>
+                            <span><svg class="ico"><use href="#i-layers"/></svg>Class XI</span>
+                        </label>
+                        <label for="12" class="seg-opt">
+                            <input type="radio" value="ClassXII" name="Class" id="12">
+                            <span><svg class="ico"><use href="#i-layers"/></svg>Class XII</span>
+                        </label>
+                    </div>
+                </div>
+
+                <label class="field" for="Boards">
+                    <span class="lab">Board</span>
+                    <span class="select">
+                        <svg class="ico lead-ico"><use href="#i-board"/></svg>
+                        <select name="Boards" id="Boards" required>
+                            <option value="" disabled selected>Select your board</option>
+                            <option value="WBCHSE">WBCHSE</option>
+                            <option value="ICSE">ICSE</option>
+                            <option value="CBSE">CBSE</option>
+                            <option value="Other State Board">Other State Board</option>
+                        </select>
+                        <svg class="ico chev"><use href="#i-chev"/></svg>
+                    </span>
+                </label>
+            </div>
+
+            <!-- Marks -->
+            <div class="group">
+                <h3 class="gt"><span class="gi"><svg class="ico"><use href="#i-chart"/></svg></span>Marks obtained</h3>
+
+                <div class="marks">
+                    <label class="mk" for="Ben" style="--c:var(--c5)">
+                        <span class="mk-top"><svg class="ico"><use href="#i-book"/></svg>Bengali</span>
+                        <span class="mk-in"><input type="number" id="Ben" placeholder="0" required min="0" max="100" inputmode="numeric" oninput="if(this.value > 100 || this.value < 0) { alert('Invalid! Please enter marks between 0 and 100.'); this.value = ''; }"><i>/ 100</i></span>
+                    </label>
+                    <label class="mk" for="Eng" style="--c:var(--c1)">
+                        <span class="mk-top"><svg class="ico"><use href="#i-lang"/></svg>English</span>
+                        <span class="mk-in"><input type="number" id="Eng" required placeholder="0" min="0" max="100" inputmode="numeric" oninput="if(this.value > 100 || this.value < 0) { alert('Invalid! Please enter marks between 0 and 100.'); this.value = ''; }"><i>/ 100</i></span>
+                    </label>
+                    <label class="mk" for="Phy" style="--c:var(--c2)">
+                        <span class="mk-top"><svg class="ico"><use href="#i-atom"/></svg>Physics</span>
+                        <span class="mk-in"><input type="number" id="Phy" required placeholder="0" min="0" max="100" inputmode="numeric" oninput="if(this.value > 100 || this.value < 0) { alert('Invalid! Please enter marks between 0 and 100.'); this.value = ''; }"><i>/ 100</i></span>
+                    </label>
+                    <label class="mk" for="Math" style="--c:var(--c3)">
+                        <span class="mk-top"><svg class="ico"><use href="#i-sigma"/></svg>Mathematics</span>
+                        <span class="mk-in"><input type="number" id="Math" required placeholder="0" min="0" max="100" inputmode="numeric" oninput="if(this.value > 100 || this.value < 0) { alert('Invalid! Please enter marks between 0 and 100.'); this.value = ''; }"><i>/ 100</i></span>
+                    </label>
+                    <label class="mk" for="Chem" style="--c:var(--c4)">
+                        <span class="mk-top"><svg class="ico"><use href="#i-flask"/></svg>Chemistry</span>
+                        <span class="mk-in"><input type="number" id="Chem" required placeholder="0" min="0" max="100" inputmode="numeric" oninput="if(this.value > 100 || this.value < 0) { alert('Invalid! Please enter marks between 0 and 100.'); this.value = ''; }"><i>/ 100</i></span>
+                    </label>
+                    <label class="mk" for="Bio" style="--c:var(--c6)">
+                        <span class="mk-top"><svg class="ico"><use href="#i-leaf"/></svg>Biology</span>
+                        <span class="mk-in"><input type="number" id="Bio" required placeholder="0" min="0" max="100" inputmode="numeric" oninput="if(this.value > 100 || this.value < 0) { alert('Invalid! Please enter marks between 0 and 100.'); this.value = ''; }"><i>/ 100</i></span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Optional subject -->
+            <div class="group" id="optionalSelect">
+                <h3 class="gt"><span class="gi"><svg class="ico"><use href="#i-target"/></svg></span>Tie-break subject</h3>
+                <p class="hint">If you got the same marks in all subjects, which optional subject would you choose?</p>
+
+                <div class="chips" role="radiogroup" aria-label="Optional subject">
+                    <label class="chip" for="p" style="--c:var(--c2)"><input type="radio" value="Physics" name="ops" id="p" required><span><svg class="ico"><use href="#i-atom"/></svg>Physics</span></label>
+                    <label class="chip" for="c" style="--c:var(--c4)"><input type="radio" value="Chemistry" name="ops" id="c"><span><svg class="ico"><use href="#i-flask"/></svg>Chemistry</span></label>
+                    <label class="chip" for="m" style="--c:var(--c3)"><input type="radio" value="Mathematics" name="ops" id="m"><span><svg class="ico"><use href="#i-sigma"/></svg>Mathematics</span></label>
+                    <label class="chip" for="b" style="--c:var(--c6)"><input type="radio" value="Biology" name="ops" id="b"><span><svg class="ico"><use href="#i-leaf"/></svg>Biology</span></label>
+                </div>
+            </div>
+
+            <!-- Suggestion -->
+            <div class="group">
+                <h3 class="gt"><span class="gi"><svg class="ico"><use href="#i-msg"/></svg></span>Suggestion box</h3>
+                <label class="field" for="suggestion">
+                    <span class="sr">Suggestion</span>
+                    <textarea id="suggestion" placeholder="Write your suggestions here..." rows="4"></textarea>
+                </label>
+            </div>
+
+            <button type="submit" class="submit">
+                <span>Submit</span>
+                <svg class="ico"><use href="#i-send"/></svg>
+            </button>
+
+            <div class="cheer">
+                <p>If your result is not good, don't worry.</p>
+                <p><b>It is never about the end result. It's always about the journey.</b></p>
+            </div>
+            <p class="credit">Created by Anubhab Dutta.</p>
+        </form>
+    </section>
+</main>
+
+<script src="script.js"></script>
+<script src="form-ui.js"></script>
 </body>
 </html>
