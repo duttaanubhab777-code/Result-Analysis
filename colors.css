@@ -1,0 +1,155 @@
+/* ==========================================================
+   Colorful gradient layer — loaded after the base styles
+   ========================================================== */
+:root{
+  --bg:#0b0820; --card:#161033; --card2:#1f1847; --line:#3a2f7a; --line2:#5444a8;
+  --tx:#f6f3ff; --mut:#c3b9ee; --dim:#9486cf;
+  --c1:#22d3ee; --c2:#a78bfa; --c3:#fbbf24; --c4:#f472b6; --c5:#34d399; --c6:#fb923c;
+  --grad-main:linear-gradient(135deg,#22d3ee 0%,#6366f1 45%,#d946ef 100%);
+  --grad-warm:linear-gradient(135deg,#fbbf24 0%,#fb923c 45%,#f43f5e 100%);
+  --grad-cool:linear-gradient(135deg,#34d399 0%,#22d3ee 50%,#3b82f6 100%);
+  --grad-rainbow:linear-gradient(90deg,#22d3ee,#6366f1,#d946ef,#f43f5e,#fb923c,#fbbf24,#34d399);
+}
+html{background:#0b0820}
+
+/* animated-looking rich background (static, no repaint cost) */
+body::before{
+  background:
+    radial-gradient(55% 45% at 0% 0%,rgba(34,211,238,.35),transparent 70%),
+    radial-gradient(50% 45% at 100% 8%,rgba(217,70,239,.32),transparent 70%),
+    radial-gradient(55% 45% at 0% 70%,rgba(99,102,241,.30),transparent 70%),
+    radial-gradient(50% 45% at 100% 85%,rgba(251,146,60,.26),transparent 70%),
+    radial-gradient(45% 40% at 50% 100%,rgba(52,211,153,.22),transparent 70%),
+    linear-gradient(160deg,#0b0820 0%,#150b33 50%,#0a1530 100%);
+}
+
+/* ---------- gradient text ---------- */
+.intro h1,.name,.panel-head h2,.sec-title{
+  background:linear-gradient(90deg,#67e8f9,#a78bfa 45%,#f0abfc 75%,#fdba74);
+  -webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;
+}
+.sec-title .ico{-webkit-text-fill-color:initial}
+.ring-c b,.tv,.hb-m,.dn{background:linear-gradient(90deg,#67e8f9,#f0abfc);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+.dn{fill:#f0abfc;background:none;-webkit-text-fill-color:initial}
+#tileGrade .tv{background:none;-webkit-text-fill-color:var(--c);color:var(--c)}
+.cheer b{background:var(--grad-warm);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+
+/* ---------- panels & cards ---------- */
+.panel,.card{
+  background:
+    linear-gradient(145deg,rgba(34,211,238,.10),rgba(139,92,246,.10) 45%,rgba(244,114,182,.10)),var(--card);
+  border:1px solid transparent;
+  background-clip:padding-box;
+  position:relative;
+  box-shadow:0 30px 60px -30px rgba(99,102,241,.55),0 0 0 1px rgba(167,139,250,.28);
+}
+.panel::after,.card::after{
+  content:"";position:absolute;inset:-1px;border-radius:inherit;padding:1px;z-index:-1;pointer-events:none;
+  background:var(--grad-main);opacity:.55;
+}
+.panel,.card{isolation:isolate}
+.hero{background:linear-gradient(135deg,rgba(34,211,238,.28),rgba(139,92,246,.26) 50%,rgba(244,114,182,.28)),var(--card)!important}
+
+/* ---------- icon badges ---------- */
+.logo,.avatar{background:var(--grad-main);color:#fff;box-shadow:0 10px 24px -8px rgba(217,70,239,.7)}
+.gi,.ci,.ti,.points .pi{
+  background:linear-gradient(135deg,color-mix(in srgb,var(--c,#22d3ee) 38%,transparent),color-mix(in srgb,var(--c,#22d3ee) 10%,transparent));
+  border-color:color-mix(in srgb,var(--c,#22d3ee) 55%,transparent);
+}
+.gi,.ci{--c:var(--c1)}
+.group:nth-of-type(2) .gi{--c:var(--c4)} .group:nth-of-type(3) .gi{--c:var(--c3)} .group:nth-of-type(4) .gi{--c:var(--c5)}
+.gi,.ci{color:#fff}
+.sec-title .ico{color:var(--c4)}
+
+/* ---------- buttons ---------- */
+.submit,.btn.primary,.seg-opt input:checked + span{
+  background:linear-gradient(135deg,#22d3ee 0%,#6366f1 40%,#d946ef 75%,#fb923c 100%);color:#fff;
+  box-shadow:0 14px 34px -12px rgba(217,70,239,.75);
+}
+.submit:hover,.btn.primary:hover{box-shadow:0 20px 40px -12px rgba(217,70,239,.9);filter:saturate(1.15)}
+.btn.ghost{background:linear-gradient(135deg,rgba(34,211,238,.18),rgba(217,70,239,.18));border-color:rgba(167,139,250,.5)}
+
+/* ---------- inputs ---------- */
+input[type="text"],input[type="number"],select,textarea,.seg{
+  background:linear-gradient(135deg,rgba(34,211,238,.08),rgba(167,139,250,.10)),var(--card2);
+  border-color:rgba(167,139,250,.35);
+}
+input[type="text"]:focus,select:focus,textarea:focus{border-color:#22d3ee;box-shadow:0 0 0 4px rgba(34,211,238,.25)}
+.select select option{background:#1f1847;color:#f6f3ff}
+.mk{
+  background:linear-gradient(145deg,color-mix(in srgb,var(--c) 30%,transparent),color-mix(in srgb,var(--c) 6%,transparent) 70%),var(--card2);
+  border-color:color-mix(in srgb,var(--c) 55%,transparent);
+}
+.mk-in input{background:none;-webkit-text-fill-color:var(--tx)}
+.chip span,.chip:not(:has(span span)){ }
+.chips label.chip span{
+  background:linear-gradient(135deg,color-mix(in srgb,var(--c) 22%,transparent),color-mix(in srgb,var(--c) 5%,transparent)),var(--card2);
+  border-color:color-mix(in srgb,var(--c) 45%,transparent);color:var(--tx);
+}
+.chips label.chip input:checked + span{
+  background:linear-gradient(135deg,var(--c),color-mix(in srgb,var(--c) 45%,#d946ef));color:#fff;border-color:transparent;
+  box-shadow:0 10px 24px -10px var(--c);
+}
+.chips label.chip input:checked + span .ico{color:#fff}
+/* result page info chips */
+.hero .chips .chip{background:linear-gradient(135deg,rgba(34,211,238,.25),rgba(217,70,239,.25));border-color:rgba(255,255,255,.25);color:#fff}
+.hero .chips .chip .ico{color:#fde68a}
+
+/* ---------- progress / bars ---------- */
+.prog-bar{background:rgba(255,255,255,.12)}
+.prog-bar i{background:var(--grad-rainbow)}
+.hb-track,.dtrack{background:rgba(255,255,255,.10)}
+.hb-fill{background:linear-gradient(90deg,var(--c),color-mix(in srgb,var(--c) 40%,#fff))}
+.pc::after{background:var(--grad-rainbow)}
+.ring-track{stroke:rgba(255,255,255,.12)}
+.lb{background:linear-gradient(160deg,color-mix(in srgb,var(--c) 70%,#fff),var(--c))}
+.lm b{background:var(--grad-warm);color:#fff}
+.lm i{background:linear-gradient(#fb923c,#f43f5e)}
+
+/* ---------- tiles ---------- */
+.tile,.in-t{
+  background:linear-gradient(145deg,color-mix(in srgb,var(--c) 30%,transparent),color-mix(in srgb,var(--c) 5%,transparent) 75%),var(--card);
+  border-color:color-mix(in srgb,var(--c) 55%,transparent);
+  box-shadow:0 16px 34px -22px var(--c);
+}
+.tile::before{width:4px;background:linear-gradient(var(--c),color-mix(in srgb,var(--c) 30%,#fff))}
+.ti .ico{color:#fff}
+
+/* ---------- table ---------- */
+.result-table th{color:#fff;background:linear-gradient(90deg,rgba(34,211,238,.30),rgba(139,92,246,.30),rgba(244,114,182,.30));border-bottom-color:rgba(255,255,255,.2)}
+.result-table th:first-child{border-radius:12px 0 0 0}.result-table th:last-child{border-radius:0 12px 0 0}
+.result-table tbody tr:nth-child(odd){background:linear-gradient(90deg,rgba(34,211,238,.07),rgba(244,114,182,.07))}
+.result-table tbody tr:hover{background:linear-gradient(90deg,rgba(34,211,238,.18),rgba(244,114,182,.18))}
+.pill{background:linear-gradient(135deg,color-mix(in srgb,var(--g) 55%,transparent),color-mix(in srgb,var(--g) 18%,transparent));color:#fff;border-color:var(--g)}
+.tag{border-color:#f0abfc;color:#f5d0fe}
+
+/* ---------- SVG charts ---------- */
+.col{fill:url(#gCol)}
+.col.off{fill:url(#gCol);fill-opacity:.3;stroke:#a78bfa}
+.rpoly{fill:url(#gRadar);stroke:#f0abfc;stroke-width:2.5}
+.val,.rv{fill:#fff}
+.rl,.ax2{fill:#ddd6fe}
+.gl{stroke:rgba(167,139,250,.25)}.rg,.sp{stroke:rgba(167,139,250,.3)}
+.rdot{stroke:#fff}
+.legend i{background:linear-gradient(135deg,var(--c),color-mix(in srgb,var(--c) 40%,#fff))}
+
+/* ---------- intro art & misc ---------- */
+.art{filter:saturate(1.4) drop-shadow(0 12px 30px rgba(139,92,246,.45))}
+.credit{background:var(--grad-rainbow);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+::selection{background:#d946ef;color:#fff}
+:focus-visible{outline-color:#f0abfc}
+
+/* ---------- print: keep PDF clean ---------- */
+@media print{
+  html,body{background:#fff!important}
+  .panel::after,.card::after{display:none}
+  .intro h1,.name,.sec-title,.ring-c b,.tv,.hb-m{background:none!important;-webkit-text-fill-color:initial!important;color:#0f1724!important}
+  .hero{background:linear-gradient(135deg,#e0f7ff,#efe7ff 50%,#ffe4f1)!important}
+  .card,.tile,.in-t,.panel{background:linear-gradient(145deg,#f3f7ff,#f8efff)!important;box-shadow:none!important}
+  .result-table th{color:#0f1724;background:#e8ecff}
+  .result-table tbody tr:nth-child(odd){background:#f6f3ff}
+  .pill,.mk-in input{color:#0f1724!important;-webkit-text-fill-color:#0f1724}
+  .rpoly{fill:rgba(139,92,246,.25)}
+  .val,.rv{fill:#0f1724}.rl,.ax2{fill:#334}
+  .lm b{color:#fff}
+}
